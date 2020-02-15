@@ -17,6 +17,7 @@ const Deployments = props => {
                         <th>Name</th>
                         <th>Ready</th>
                         <th>Age</th>
+                        <th>Log</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,14 @@ const Deployments = props => {
                                 <td>{deploy.name}</td>
                                 <td style={{ color: 'white', backgroundColor: deploy.allReplicasUp ? 'green' : 'red' }}>{deploy.ready}</td>
                                 <td>{deploy.age}</td>
+                                <td>
+                                    <span
+                                        style={{ cursor: 'pointer', textDecoration: 'underline', color: 'black' }}
+                                        onClick={() => location.replace(deploy.logLink)}
+                                    >
+                                        Logs
+                                    </span>
+                                </td>
                             </tr>
                         ))}
                 </tbody>

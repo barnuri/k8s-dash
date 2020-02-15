@@ -1,0 +1,18 @@
+export const Reset = '\u001b[0m';
+export const colorByNumber = (num: number, str: string) => `\u001b[${num}m` + str + Reset;
+export const black = (str: string) => colorByNumber(30, str);
+export const red = (str: string) => colorByNumber(31, str);
+export const yellow = (str: string) => colorByNumber(33, str);
+export const green = (str: string) => colorByNumber(32, str);
+export const blue = (str: string) => colorByNumber(34, str);
+export const magenta = (str: string) => colorByNumber(35, str);
+export const cyan = (str: string) => colorByNumber(36, str);
+export const white = (str: string) => colorByNumber(37, str);
+export const blackBg = (str: string) => colorByNumber(40, str);
+export const redBg = (str: string) => colorByNumber(41, str);
+export const yellowBg = (str: string) => colorByNumber(43, str);
+export const greenBg = (str: string) => colorByNumber(42, str);
+export const blueBg = (str: string) => colorByNumber(44, str);
+export const magentaBg = (str: string) => colorByNumber(45, str);
+export const cyanBg = (str: string) => colorByNumber(46, str);
+export const whiteBg = (str: string) => colorByNumber(47, str);
