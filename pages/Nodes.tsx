@@ -2,6 +2,7 @@ import * as React from 'react';
 import Layout from '../components/Layout';
 import TableStyle from '../components/TableStyle';
 import { getNodes, baseURL } from '../services/api';
+import { withRedux } from '../lib/withRedux';
 
 const Nodes = props => {
     return (
@@ -33,4 +34,4 @@ const Nodes = props => {
     );
 };
 Nodes.getInitialProps = async () => ({ data: await getNodes(), baseUrl: baseURL() });
-export default Nodes;
+export default withRedux(Nodes);

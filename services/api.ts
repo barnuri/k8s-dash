@@ -10,7 +10,11 @@ export const baseURL = () => {
 
 const axios = Axios.create({
     // timeout: 10000
-});
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+    },
+    mode: 'no-cors',
+} as any);
 
 const age = date => {
     const secs = moment().diff(moment(date), 'seconds');

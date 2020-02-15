@@ -1,15 +1,19 @@
 import * as React from 'react';
 import Head from 'next/head';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 
 const Layout = props => {
-    const link = name => (
-        <span
-            style={{ cursor: 'pointer', textDecoration: 'underline', color: 'black', padding: 10 }}
-            onClick={() => location.replace(`/${name === 'Pods' ? '' : name}`)}
-        >
-            {name}
-        </span>
-    );
+    const namespace = useSelector(state => state.namespace, shallowEqual);
+    const dispatch = useDispatch();
+    const link = name => {
+        const path = `/${name === 'Pods' ? '' : name}`;
+        const navigate = () => location.replace(path);
+        return (
+            <span style={{ cursor: 'pointer', textDecoration: 'underline', color: 'black', padding: 10 }} onClick={navigate}>
+                {name}
+            </span>
+        );
+    };
     return (
         <div>
             <Head>
@@ -26,6 +30,11 @@ const Layout = props => {
                     {link('Nodes')}
                 </nav>
             </header>
+            <hr />
+            <span style={{ padding: 5 }}>namespace:</span>
+            <input value={namespace} onChange={e => dispatch({ type: 'NAMESPACE', namespace: e.target.value })} />
+            <span style={{ padding: 5 }}>(clear the field if you want to see all namespaces)</span>
+            <hr />
             {props.children}
             <footer>
                 <hr />
