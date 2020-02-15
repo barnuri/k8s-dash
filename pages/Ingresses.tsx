@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
 import TableStyle from '../components/TableStyle';
-import { getIngresses } from '../services/api';
+import { getIngresses, baseURL } from '../services/api';
 
 const Ingresses = props => {
     return (
-        <Layout title='Ingresses Lists'>
+        <Layout title='Ingresses Lists' baseUrl={props.baseUrl}>
             <table>
                 <thead>
                     <tr>
@@ -34,5 +34,5 @@ const Ingresses = props => {
         </Layout>
     );
 };
-Ingresses.getInitialProps = async () => ({ data: await getIngresses() });
+Ingresses.getInitialProps = async () => ({ data: await getIngresses(), baseUrl: baseURL() });
 export default Ingresses;

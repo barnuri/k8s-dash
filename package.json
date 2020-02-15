@@ -1,26 +1,28 @@
 {
-  "name": "with-typescript",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "next",
-    "start2": "next start",
-    "build": "next build",
-    "type-check": "tsc"
-  },
-  "dependencies": {
-    "ansi-to-react": "^6.0.2-alpha.0",
-    "axios": "^0.19.2",
-    "isomorphic-unfetch": "3.0.0",
-    "moment": "^2.24.0",
-    "next": "latest",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
-  },
-  "devDependencies": {
-    "@types/node": "^12.12.21",
-    "@types/react": "^16.9.16",
-    "@types/react-dom": "^16.9.4",
-    "typescript": "3.7.3"
-  },
-  "license": "ISC"
+    "name": "k8s-dash",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "next",
+        "tsc": "tsc",
+        "build": "next build",
+        "prod": "next start",
+        "docker": "./docker.sh",
+        "docker:windows": "wsl ./docker.sh"
+    },
+    "dependencies": {
+        "ansi-to-react": "^6.0.2-alpha.0",
+        "axios": "^0.19.2",
+        "isomorphic-unfetch": "3.0.0",
+        "moment": "^2.24.0",
+        "next": "latest",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
+    },
+    "devDependencies": {
+        "@types/node": "^12.12.21",
+        "@types/react": "^16.9.16",
+        "@types/react-dom": "^16.9.4",
+        "typescript": "3.7.3"
+    },
+    "license": "ISC"
 }

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
 import TableStyle from '../components/TableStyle';
-import { getDeployments } from '../services/api';
+import { getDeployments, baseURL } from '../services/api';
 
 const Deployments = props => {
     return (
-        <Layout title='Deployments Lists'>
+        <Layout title='Deployments Lists' baseUrl={props.baseUrl}>
             <table>
                 <thead>
                     <tr>
@@ -30,5 +30,5 @@ const Deployments = props => {
         </Layout>
     );
 };
-Deployments.getInitialProps = async () => ({ data: await getDeployments() });
+Deployments.getInitialProps = async () => ({ data: await getDeployments(), baseUrl: baseURL() });
 export default Deployments;

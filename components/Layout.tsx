@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { baseURL } from '../services/api';
 
 const Layout = props => {
     const link = name => (
@@ -30,7 +29,7 @@ const Layout = props => {
             {props.children}
             <footer>
                 <hr />
-                <span>baseURL: {baseURL}</span>
+                <span>baseURL: {props.baseUrl}</span>
             </footer>
         </div>
     );

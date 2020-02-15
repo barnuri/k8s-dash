@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
 import TableStyle from '../components/TableStyle';
-import { getPods } from '../services/api';
+import { getPods, baseURL } from '../services/api';
 
 const PodLists = props => {
     return (
-        <Layout title='Pod Lists'>
+        <Layout title='Pod Lists' baseUrl={props.baseUrl}>
             <table>
                 <thead>
                     <tr>
@@ -37,5 +37,5 @@ const PodLists = props => {
         </Layout>
     );
 };
-PodLists.getInitialProps = async () => ({ data: await getPods() });
+PodLists.getInitialProps = async () => ({ data: await getPods(), baseUrl: baseURL() });
 export default PodLists;

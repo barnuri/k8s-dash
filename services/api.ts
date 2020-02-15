@@ -1,9 +1,14 @@
 import Axios from 'axios';
 import moment from 'moment';
-export const baseURL = process.env.API_URL || 'http://localhost:8001';
+
+let envBaseUrl = process.env.API_URL;
+
+export const baseURL = () => {
+    envBaseUrl = envBaseUrl || process.env.API_URL;
+    return envBaseUrl || 'http://localhost:8001';
+};
 
 const axios = Axios.create({
-    baseURL,
     // timeout: 10000
 });
 
@@ -37,7 +42,8 @@ const catchErr = (err, fallback: any = []) => {
 };
 
 export const getPods = () =>
-    axios('/api/v1/pods')
+    axios
+        .get(baseURL() + '/api/v1/pods')
         .then(res => res.data)
         .then(res => res.items)
         .then(pods =>
@@ -52,12 +58,13 @@ export const getPods = () =>
 
 export const getPodLog = (podName, namespace = 'default') =>
     axios
-        .get(`/api/v1/namespaces/${namespace}/pods/${podName}/log`)
+        .get(baseURL() + `/api/v1/namespaces/${namespace}/pods/${podName}/log`)
         .then(res => res.data.split('\n'))
         .catch(err => catchErr(err, ''));
 
 export const getDeployments = () =>
-    axios('/apis/apps/v1/deployments')
+    axios
+        .get(baseURL() + '/apis/apps/v1/deployments')
         .then(res => res.data)
         .then(res => res.items)
         .then(deployments =>
@@ -72,7 +79,8 @@ export const getDeployments = () =>
         .catch(err => catchErr(err));
 
 export const getServices = () =>
-    axios('/api/v1/services')
+    axios
+        .get(baseURL() + '/api/v1/services')
         .then(res => res.data)
         .then(res => res.items)
         .then(services =>
@@ -88,7 +96,8 @@ export const getServices = () =>
         .catch(err => catchErr(err));
 
 export const getNodes = () =>
-    axios('/api/v1/nodes')
+    axios
+        .get(baseURL() + '/api/v1/nodes')
         .then(res => res.data)
         .then(res => res.items)
         .then(nodes =>
@@ -106,7 +115,8 @@ export const getNodes = () =>
         .catch(err => catchErr(err));
 
 export const getIngresses = () =>
-    axios('/apis/extensions/v1beta1/ingresses')
+    axios
+        .get(baseURL() + '/apis/extensions/v1beta1/ingresses')
         .then(res => res.data)
         .then(res => res.items)
         .then(ingresses =>

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
 import TableStyle from '../components/TableStyle';
-import { getNodes } from '../services/api';
+import { getNodes, baseURL } from '../services/api';
 
 const Nodes = props => {
     return (
-        <Layout title='Nodes Lists'>
+        <Layout title='Nodes Lists' baseUrl={props.baseUrl}>
             <table>
                 <thead>
                     <tr>
@@ -32,5 +32,5 @@ const Nodes = props => {
         </Layout>
     );
 };
-Nodes.getInitialProps = async () => ({ data: await getNodes() });
+Nodes.getInitialProps = async () => ({ data: await getNodes(), baseUrl: baseURL() });
 export default Nodes;
