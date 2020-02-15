@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: k8s-dash
+    labels:
+        app: k8s-dash
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: k8s-dash
+    template:
+        metadata:
+            labels:
+                app: k8s-dash
+        spec:
+            containers:
+                - name: k8s-dash
+                  image: barnuri23/k8s-dash:latest
+                  env:
+                      - name: API_URL
+                        value: 'http://192.168.123.14:8001'
+---
+kind: Service
+apiVersion: v1
+metadata:
+    name: k8s-dash
+spec:
+    selector:
+        app: k8s-dash
+    ports:
+        - port: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: k8s-dash
+    annotations:
+        ingress.kubernetes.io/rewrite-target: /
+spec:
+    rules:
+        - host: k8s-dash
+          http:
+              paths:
+                  - path: /
+                    backend:
+                        serviceName: k8s-dash
+                        servicePort: 3000
