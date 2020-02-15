@@ -19,7 +19,7 @@ spec:
                   image: barnuri23/k8s-dash:latest
                   env:
                       - name: API_URL
-                        value: 'http://192.168.123.14:8001'
+                        value: 'http://localhost:8001'
 ---
 kind: Service
 apiVersion: v1
