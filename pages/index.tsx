@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
+import { getPods, baseUrl } from '../services/api';
+import { withRedux } from '../helpers/withRedux';
 import TableStyle from '../components/TableStyle';
-import { getPods, baseURL } from '../services/api';
-import { withRedux } from '../lib/withRedux';
+
 import { shallowEqual, useSelector } from 'react-redux';
 
 const PodLists = props => {
@@ -43,5 +44,5 @@ const PodLists = props => {
         </Layout>
     );
 };
-PodLists.getInitialProps = async () => ({ data: await getPods(), baseUrl: baseURL() });
+PodLists.getInitialProps = async () => ({ data: await getPods(), baseUrl: baseUrl() });
 export default withRedux(PodLists);

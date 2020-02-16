@@ -1,21 +1,20 @@
-import Axios from 'axios';
+import Axios, { AxiosRequestConfig } from 'axios';
 import moment from 'moment';
 import { yellow, blackBg } from '../helpers/colors';
 
 let envBaseUrl = process.env.API_URL;
-
-export const baseURL = () => {
+export const baseUrl = () => {
     envBaseUrl = envBaseUrl || process.env.API_URL;
     return envBaseUrl || 'http://localhost:8001';
 };
 
-const axios = Axios.create({
+const axiosSettings: () => AxiosRequestConfig = () => ({
     // timeout: 10000
+    baseURL: baseUrl(),
     headers: {
         'Access-Control-Allow-Origin': '*',
     },
-    mode: 'no-cors',
-} as any);
+});
 
 const age = date => {
     const secs = moment().diff(moment(date), 'seconds');
@@ -47,8 +46,7 @@ const catchErr = (err, fallback: any = []) => {
 };
 
 export const getPods = () =>
-    axios
-        .get(baseURL() + '/api/v1/pods')
+    Axios.get('/api/v1/pods', axiosSettings())
         .then(res => res.data)
         .then(res => res.items as any[])
         .catch(err => catchErr(err) as any[])
@@ -62,15 +60,13 @@ export const getPods = () =>
         );
 
 export const getPodLog = (podName, namespace = 'default') =>
-    axios
-        .get(baseURL() + `/api/v1/namespaces/${namespace}/pods/${podName}/log`)
+    Axios.get(`/api/v1/namespaces/${namespace}/pods/${podName}/log`, axiosSettings())
         .then(res => res.data as string)
         .catch(err => catchErr(err, '') as string)
         .then(res => res.split('\n'));
 
 export const getDeployments = async () =>
-    axios
-        .get(baseURL() + '/apis/apps/v1/deployments')
+    Axios.get('/apis/apps/v1/deployments', axiosSettings())
         .then(res => res.data)
         .then(res => res.items as any[])
         .catch(err => catchErr(err) as any[])
@@ -101,8 +97,7 @@ export const getDeploymentLogs = async (deployName: string, namespace: string = 
 };
 
 export const getServices = () =>
-    axios
-        .get(baseURL() + '/api/v1/services')
+    Axios.get('/api/v1/services', axiosSettings())
         .then(res => res.data)
         .then(res => res.items as any[])
         .catch(err => catchErr(err) as any[])
@@ -118,8 +113,7 @@ export const getServices = () =>
         );
 
 export const getNodes = () =>
-    axios
-        .get(baseURL() + '/api/v1/nodes')
+    Axios.get('/api/v1/nodes', axiosSettings())
         .then(res => res.data)
         .then(res => res.items as any[])
         .catch(err => catchErr(err) as any[])
@@ -137,8 +131,7 @@ export const getNodes = () =>
         );
 
 export const getIngresses = () =>
-    axios
-        .get(baseURL() + '/apis/extensions/v1beta1/ingresses')
+    Axios.get('/apis/extensions/v1beta1/ingresses', axiosSettings())
         .then(res => res.data)
         .then(res => res.items as any[])
         .catch(err => catchErr(err) as any[])

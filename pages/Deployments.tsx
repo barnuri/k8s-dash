@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
+import { getDeployments, baseUrl } from '../services/api';
+import { withRedux } from '../helpers/withRedux';
 import TableStyle from '../components/TableStyle';
-import { getDeployments, baseURL } from '../services/api';
-import { withRedux } from '../lib/withRedux';
+
 import { shallowEqual, useSelector } from 'react-redux';
 
 const Deployments = props => {
@@ -45,5 +46,5 @@ const Deployments = props => {
         </Layout>
     );
 };
-Deployments.getInitialProps = async () => ({ data: await getDeployments(), baseUrl: baseURL() });
+Deployments.getInitialProps = async () => ({ data: await getDeployments(), baseUrl: baseUrl() });
 export default withRedux(Deployments);

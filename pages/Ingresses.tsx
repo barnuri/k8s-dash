@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
+import { getIngresses, baseUrl } from '../services/api';
+import { withRedux } from '../helpers/withRedux';
 import TableStyle from '../components/TableStyle';
-import { getIngresses, baseURL } from '../services/api';
-import { withRedux } from '../lib/withRedux';
+
 import { shallowEqual, useSelector } from 'react-redux';
 
 const Ingresses = props => {
@@ -40,5 +41,5 @@ const Ingresses = props => {
         </Layout>
     );
 };
-Ingresses.getInitialProps = async () => ({ data: await getIngresses(), baseUrl: baseURL() });
+Ingresses.getInitialProps = async () => ({ data: await getIngresses(), baseUrl: baseUrl() });
 export default withRedux(Ingresses);

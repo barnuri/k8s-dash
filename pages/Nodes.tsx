@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
+import { getNodes, baseUrl } from '../services/api';
+import { withRedux } from '../helpers/withRedux';
 import TableStyle from '../components/TableStyle';
-import { getNodes, baseURL } from '../services/api';
-import { withRedux } from '../lib/withRedux';
 
 const Nodes = props => {
     return (
@@ -33,5 +33,5 @@ const Nodes = props => {
         </Layout>
     );
 };
-Nodes.getInitialProps = async () => ({ data: await getNodes(), baseUrl: baseURL() });
+Nodes.getInitialProps = async () => ({ data: await getNodes(), baseUrl: baseUrl() });
 export default withRedux(Nodes);

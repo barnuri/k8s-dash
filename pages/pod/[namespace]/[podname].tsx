@@ -1,9 +1,9 @@
 import React from 'react';
-import { getPodLog, baseURL } from '../../../services/api';
-import Ansi from 'ansi-to-react';
+import { getPodLog, baseUrl } from '../../../services/api';
 import Layout from '../../../components/Layout';
 import { withRouter } from 'next/router';
-import { withRedux } from '../../../lib/withRedux';
+import { withRedux } from '../../../helpers/withRedux';
+import LogComponent from '../../../components/LogComponent';
 
 const PodLogs = props => {
     return (
@@ -11,16 +11,11 @@ const PodLogs = props => {
             <h1>Pod: {props.router.query.podname}</h1>
             <h2>Namespace: {props.router.query.namespace}</h2>
             <h3>Log</h3>
-            {props.log.map((logLine, index) => (
-                <div key={index}>
-                    <Ansi>{logLine}</Ansi>
-                </div>
-            ))}
-            {/* <h4 dangerouslySetInnerHTML={{ __html: props.log.split('\n').join('<br/>') }}></h4> */}
+            <LogComponent log={props.log} />
         </Layout>
     );
 };
 
-PodLogs.getInitialProps = async ({ query }) => ({ log: await getPodLog(query.podname, query.namespace), baseUrl: baseURL() });
+PodLogs.getInitialProps = async ({ query }) => ({ log: await getPodLog(query.podname, query.namespace), baseUrl: baseUrl() });
 
 export default withRedux(withRouter(PodLogs));

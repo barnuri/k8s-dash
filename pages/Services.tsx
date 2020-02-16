@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
-import TableStyle from '../components/TableStyle';
-import { getServices, baseURL } from '../services/api';
-import { withRedux } from '../lib/withRedux';
+import { getServices, baseUrl } from '../services/api';
+import { withRedux } from '../helpers/withRedux';
 import { shallowEqual, useSelector } from 'react-redux';
+import TableStyle from '../components/TableStyle';
 
 const Services = props => {
     const namespace = useSelector(state => state.namespace, shallowEqual);
@@ -40,5 +40,5 @@ const Services = props => {
         </Layout>
     );
 };
-Services.getInitialProps = async () => ({ data: await getServices(), baseUrl: baseURL() });
+Services.getInitialProps = async () => ({ data: await getServices(), baseUrl: baseUrl() });
 export default withRedux(Services);
