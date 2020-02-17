@@ -27,8 +27,8 @@ kubectl patch deployment <name> -p (-join("{\""spec\"":{\""template\"":{\""metad
 # Run via Docker
 
 ```bash
-docker stop k8s-dash || true
-docker rm k8s-dash || true
+docker stop k8s-dash
+docker rm k8s-dash
 docker run -e API_URL="http://localhost:8001" --name k8s-dash -p 3000:3000 barnuri23/k8s-dash:latest
 ```
 
