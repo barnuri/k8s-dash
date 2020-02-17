@@ -19,7 +19,7 @@ spec:
                   image: barnuri23/k8s-dash:latest
                   env:
                       - name: API_URL
-                        value: 'http://localhost:8001'
+                        value: $API_URL
 ---
 kind: Service
 apiVersion: v1
@@ -39,7 +39,7 @@ metadata:
         ingress.kubernetes.io/rewrite-target: /
 spec:
     rules:
-        - host: k8s-dash
+        - host: $DASH_INGRESS_HOST
           http:
               paths:
                   - path: /

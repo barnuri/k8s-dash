@@ -7,7 +7,8 @@ kubectl proxy --address='0.0.0.0' --disable-filter=true --reject-methods="POST,P
 # Run via K8s
 
 ```bash
-# customize env var API_URL in k8s-example.yaml
+export API_URL='http://localhost:8001'
+export DASH_INGRESS_HOST='k8s-dash'
 kubectl apply -f k8s-example.yaml
 ```
 
