@@ -9,7 +9,8 @@ kubectl proxy --address='0.0.0.0' --disable-filter=true --reject-methods="POST,P
 ```bash
 export API_URL='http://localhost:8001'
 export DASH_INGRESS_HOST='k8s-dash'
-kubectl apply -f k8s-example.yaml
+curl https://raw.githubusercontent.com/barnuri/k8s-dash/master/k8s.yaml -o ./k8s.yaml
+cat k8s.yaml | envsubst | kubectl apply -f -
 ```
 
 # Run via Docker
