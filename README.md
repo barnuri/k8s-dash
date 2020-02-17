@@ -1,9 +1,8 @@
 # First Run Kubectl Proxy
 
 ```bash
-kubectl proxy --address='0.0.0.0' --disable-filter=true --reject-methods="POST,PUT,PATCH"
+kubectl proxy --address="0.0.0.0" --disable-filter=true --reject-methods="POST,PUT,PATCH"
 ```
-
 
 # Run via K8s
 
