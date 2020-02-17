@@ -74,7 +74,7 @@ export const getDeployments = async () =>
             res.map(deploy => ({
                 name: deploy.metadata.name as string,
                 namespace: deploy.metadata.namespace as string,
-                ready: `${deploy.status.readyReplicas}/${deploy.status.replicas}`,
+                ready: `${deploy.status.readyReplicas || 0}/${deploy.status.replicas}`,
                 allReplicasUp: deploy.status.readyReplicas === deploy.status.replicas,
                 age: age(deploy.metadata.creationTimestamp),
                 logLink: `/deployment/${deploy.metadata.namespace}/${deploy.metadata.name}`,

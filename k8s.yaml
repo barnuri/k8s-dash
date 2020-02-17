@@ -17,6 +17,7 @@ spec:
             containers:
                 - name: k8s-dash
                   image: barnuri23/k8s-dash:latest
+                  imagePullPolicy: Always
                   env:
                       - name: API_URL
                         value: $API_URL
