@@ -15,7 +15,7 @@ const Layout = props => {
         );
     };
     return (
-        <div>
+        <div style={{ overflowX: 'hidden', overflowY: 'auto' }}>
             <Head>
                 <title>{props.title}</title>
                 <meta charSet='utf-8' />
