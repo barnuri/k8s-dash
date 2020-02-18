@@ -2,9 +2,9 @@ import Ansi from 'ansi-to-react';
 import React from 'react';
 
 export default props => (
-    <div style={{ backgroundColor: '#1e1e1e', color: 'white', width: '100%', marginLeft: -8, padding: 8 }}>
+    <div style={{ backgroundColor: '#1e1e1e', color: 'white', width: '100%', padding: 8 }}>
         {props.log.map((logLine, index) => (
-            <div key={index}>
+            <div key={index} style={{ marginLeft: 8 }}>
                 <Ansi>{logLine}</Ansi>
             </div>
         ))}

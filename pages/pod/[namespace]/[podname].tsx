@@ -8,9 +8,11 @@ import LogComponent from '../../../components/LogComponent';
 const PodLogs = props => {
     return (
         <Layout title='Pod Logs' baseUrl={props.baseUrl}>
-            <h1>Pod: {props.router.query.podname}</h1>
-            <h2>Namespace: {props.router.query.namespace}</h2>
-            <h3>Log</h3>
+            <div style={{ marginLeft: 8 }}>
+                <h1>Pod: {props.router.query.podname}</h1>
+                <h2>Namespace: {props.router.query.namespace}</h2>
+                <h3>Log</h3>
+            </div>
             <LogComponent log={props.log} />
         </Layout>
     );

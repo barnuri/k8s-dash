@@ -1,6 +1,6 @@
 import Axios, { AxiosRequestConfig } from 'axios';
 import moment from 'moment';
-import { yellow, blackBg } from '../helpers/colors';
+import { yellow } from '../helpers/colors';
 
 let envBaseUrl = process.env.API_URL;
 export const baseUrl = () => {
@@ -90,7 +90,7 @@ export const getDeploymentLogs = async (deployName: string, namespace: string = 
 
     for (let index = 0; index < matches.length; index++) {
         const pod = matches[index];
-        promises.push(getPodLog(pod.name, pod.namespace).then(log => logs.push(blackBg(yellow(`pod index - ${index}`)), ...log)));
+        promises.push(getPodLog(pod.name, pod.namespace).then(log => logs.push(yellow('pod - ' + pod.name), ...log)));
     }
 
     await Promise.all(promises);
