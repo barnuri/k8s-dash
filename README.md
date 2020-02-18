@@ -12,9 +12,6 @@ Start-Job { kubectl proxy --address="0.0.0.0" --disable-filter=true --reject-met
 # Run via K8s
 
 ## Install
---- 
-
-### donwload file
 
 ```bash
 curl https://raw.githubusercontent.com/barnuri/k8s-dash/master/k8s.yaml -o ./k8s.yaml
@@ -35,8 +32,6 @@ gc k8s.yaml | foreach { $ExecutionContext.InvokeCommand.ExpandString($_) } | kub
 ```
 
 ## Repull image of existing deploy
---- 
-
 ```bash
 # linux
 kubectl patch deployment k8s-dash -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
