@@ -18,10 +18,10 @@ cat k8s.yaml | envsubst | kubectl apply -f -
 ## Repull image of existing deploy
 ```bash
 # Linux
-kubectl patch deployment <name> -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+kubectl patch deployment k8s-dash -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
 
 # windows
-kubectl patch deployment <name> -p (-join("{\""spec\"":{\""template\"":{\""metadata\"":{\""annotations\"":{\""date\"":\""" , $(Get-Date -Format o).replace(':','-').replace('+','_') , "\""}}}}}"))
+kubectl patch deployment k8s-dash -p (-join("{\""spec\"":{\""template\"":{\""metadata\"":{\""annotations\"":{\""date\"":\""" , $(Get-Date -Format o).replace(':','-').replace('+','_') , "\""}}}}}"))
 ```
 
 # Run via Docker
