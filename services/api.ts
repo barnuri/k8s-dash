@@ -56,6 +56,7 @@ export const getPods = () =>
                 name: pod.metadata.name as string,
                 namespace: pod.metadata.namespace as string,
                 node: pod.spec.nodeName as string,
+                age: age(pod.metadata.creationTimestamp),
             })),
         );
 

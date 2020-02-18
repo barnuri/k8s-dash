@@ -38,7 +38,12 @@ const Layout = props => {
             {props.children}
             <footer>
                 <hr />
-                <span>baseURL: {props.baseUrl}</span>
+                <span>
+                    baseURL:{' '}
+                    <a href={props.baseUrl} style={{ color: 'black' }} target='_blank'>
+                        {props.baseUrl}
+                    </a>
+                </span>
             </footer>
         </div>
     );
