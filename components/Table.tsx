@@ -36,8 +36,12 @@ export default (props: Props) => {
                             <th key={`table-th-${colIndex}`} onClick={() => setSort(col)}>
                                 <div unselectable='on'>
                                     {col.title}
-                                    {col.title === orderBy.title && orderByDir === 'asc' && <img alt='asc' title='asc' src='/asc.png' />}
-                                    {col.title === orderBy.title && orderByDir === 'desc' && <img alt='desc' title='desc' src='/desc.png' />}
+                                    <img
+                                        alt={orderByDir}
+                                        title={orderByDir}
+                                        src={`/${orderByDir}.png`}
+                                        style={{ visibility: col.title === orderBy.title ? 'visible' : 'hidden' }}
+                                    />
                                 </div>
                             </th>
                         ))}
