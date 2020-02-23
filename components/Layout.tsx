@@ -45,10 +45,15 @@ const Layout = props => {
             <footer>
                 <hr />
                 <span style={{ marginLeft: 8, paddingBottom: 8 }}>
-                    baseURL:{' '}
-                    <a href={props.baseUrl} style={{ color: 'black' }} target='_blank'>
-                        {props.baseUrl}
-                    </a>
+                    Clusters:
+                    {props.baseUrl.map((url, index) => (
+                        <div key={`baseUrl-${index}`} style={{ marginLeft: 9 }}>
+                            <a href={url} style={{ color: 'black' }} target='_blank'>
+                                {url}
+                            </a>
+                            <br />
+                        </div>
+                    ))}
                 </span>
             </footer>
         </div>

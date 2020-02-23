@@ -10,6 +10,7 @@ const Nodes = props => {
             <Table
                 data={props.data}
                 cols={[
+                    { title: 'Cluster', value: item => item.cluster },
                     { title: 'Name', value: item => item.name },
                     {
                         title: 'Status',

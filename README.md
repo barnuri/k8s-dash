@@ -4,6 +4,7 @@
 # linux
 kubectl proxy --address="0.0.0.0" --disable-filter=true --reject-methods="POST,PUT,PATCH" &
 ```
+
 ```powershell
 # windows
 Start-Job { kubectl proxy --address="0.0.0.0" --disable-filter=true --reject-methods="POST,PUT,PATCH" }
@@ -19,19 +20,20 @@ curl https://raw.githubusercontent.com/barnuri/k8s-dash/master/k8s.yaml -o ./k8s
 
 ```bash
 # linux
-export API_URL='http://localhost:8001'
+export API_URL='["http://localhost:8001","http://localhost:8002"]' # support multiple clusters urls
 export DASH_INGRESS_HOST='k8s-dash'
 cat k8s.yaml | envsubst | kubectl apply -f -
 ```
 
 ```powershell
 # windows
-$API_URL='http://localhost:8001'
+$API_URL='["http://localhost:8001","http://localhost:8002"]' # support multiple clusters urls
 $DASH_INGRESS_HOST='k8s-dash'
 gc k8s.yaml | foreach { $ExecutionContext.InvokeCommand.ExpandString($_) } | kubectl apply -f -
 ```
 
 ## Repull image of existing deploy
+
 ```bash
 # linux
 kubectl patch deployment k8s-dash -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
@@ -47,5 +49,5 @@ kubectl patch deployment k8s-dash -p (-join("{\""spec\"":{\""template\"":{\""met
 ```bash
 docker stop k8s-dash
 docker rm k8s-dash
-docker run -e API_URL="http://localhost:8001" --name k8s-dash -p 3000:3000 barnuri23/k8s-dash:latest
+docker run -e API_URL='["http://localhost:8001","http://localhost:8002"]' --name k8s-dash -p 3000:3000 barnuri23/k8s-dash:latest
 ```

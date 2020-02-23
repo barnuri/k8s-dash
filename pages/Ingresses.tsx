@@ -19,6 +19,7 @@ const Ingresses = props => {
             <Table
                 data={props.data.filter(item => !namespace || item.namespace === namespace)}
                 cols={[
+                    { title: 'Cluster', value: item => item.cluster },
                     { title: 'Namespace', value: item => item.namespace },
                     { title: 'Name', value: item => item.name },
                     {
