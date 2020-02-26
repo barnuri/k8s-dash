@@ -20,14 +20,14 @@ curl https://raw.githubusercontent.com/barnuri/k8s-dash/master/k8s.yaml -o ./k8s
 
 ```bash
 # linux
-export API_URL='["http://localhost:8001","http://localhost:8002"]' # support multiple clusters urls
+export API_URL='"[\"http://localhost:8001\", \"http://localhost:8002\"]"' # support multiple clusters urls
 export DASH_INGRESS_HOST='k8s-dash'
 cat k8s.yaml | envsubst | kubectl apply -f -
 ```
 
 ```powershell
 # windows
-$API_URL='["http://localhost:8001","http://localhost:8002"]' # support multiple clusters urls
+$API_URL='"[\"http://localhost:8001\", \"http://localhost:8002\"]"' # support multiple clusters urls
 $DASH_INGRESS_HOST='k8s-dash'
 gc k8s.yaml | foreach { $ExecutionContext.InvokeCommand.ExpandString($_) } | kubectl apply -f -
 ```
