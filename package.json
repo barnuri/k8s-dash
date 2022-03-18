@@ -12,7 +12,7 @@
     },
     "dependencies": {
         "ansi-to-react": "^6.0.2-alpha.0",
-        "axios": "^0.19.2",
+        "axios": "^0.21.2",
         "isomorphic-unfetch": "3.0.0",
         "moment": "^2.24.0",
         "next": "latest",
